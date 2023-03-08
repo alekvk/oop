@@ -11,7 +11,9 @@ public class Program {
         prodCatalog.add(new Lemonade("Дюшес", 2.89, 1, "бут.", 0.5));
         prodCatalog.add(new Masks("Нежная", 8.59, 2, "шт.", 1));
         prodCatalog.add(new Milk("Тульское", 1.2, 100, "шт.", LocalDate.of(2023, 10, 05),2.5));
-       
+        prodCatalog.add(new Diapers("Легкие", 1.2, 10, "шт.", 1,true , 3, 0.5, 0.8, "BN"));
+        prodCatalog.add(new Toiletpaper("Легкие", 1.2, 10, "шт.", 4, 2 ));
+        prodCatalog.add(new Nipple("Вкусная", 1.2, 2, "шт.", 4, true ));
         
         //System.out.println(prodCatalog);
 
