@@ -11,12 +11,14 @@ import Lesson_7.Model.Base.Buyer;
 
 public class Buyers {
     private List<Buyer> buyers;
-       
-
     
     public Buyers() {
         Scanner scan = ReaderFile.readFile("buyers.txt");
-        buyers = SplitString(scan);
+        if (scan == null) {
+            buyers = new ArrayList<>();
+        } else {
+            buyers = SplitString(scan);
+        }
     }
 
     

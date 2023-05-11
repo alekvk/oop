@@ -3,11 +3,11 @@ package Lesson_7.Model.Base;
 public class Toy {
         private String idToy;
         private String title;
-        private int quantity;
-        private int frequency;
+        private String quantity;
+        private String frequency;
         
     
-        public Toy(String idToy, String title, int quantity, int frequency) {
+        public Toy(String idToy, String title, String quantity, String frequency) {
             this.idToy = idToy;
             this.title = title;
             this.quantity = quantity;
@@ -24,11 +24,11 @@ public class Toy {
             this.title = title;
         }
     
-        public void setQuantity(int quantity)  {
+        public void setQuantity(String quantity)  {
             this.quantity = quantity;
         }
         
-        public void setFrequency(int frequency) {
+        public void setFrequency(String frequency) {
             this.frequency = frequency;
         }
         
@@ -43,11 +43,11 @@ public class Toy {
             return title;
         }
     
-        public int getQuantity() {
+        public String getQuantity() {
             return quantity;
         }
         
-        public int getFrequency() {
+        public String getFrequency() {
             return frequency;
         }
         
@@ -58,7 +58,7 @@ public class Toy {
             return idToy + "Игрушка{" +
                     "Название ='" + title + '\'' +
                     ", Количество='" + quantity  + '\''+
-                    ", Частота выпадения игрушки (вес в % от 100)='" + frequency + '\'' +
+                    ", Частота выпадения игрушки (вес в % от 0 до 100)='" + frequency + '\'' +
                     '}';
         }
 }

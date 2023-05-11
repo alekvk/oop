@@ -41,7 +41,7 @@ public class PrizeFundToys {
     }
 
    
-    public void updateToy(String idToy, String title, int quantity, int frequency) {
+    public void updateToy(String idToy, String title, String quantity, String frequency) {
         for (int i = 0; i < toys.size(); i++) {
             if (toys.get(i).getIdToy().equals(idToy)) {
                 Toy t = toys.get(i);
@@ -66,7 +66,7 @@ public class PrizeFundToys {
             }
         }
         if (result.isEmpty()) {
-            System.out.println("Покупатель не найден");
+            System.out.println("Игрушка не найдена");
         } else {
             for (Toy t : result) {
                 System.out.println(t);
@@ -121,7 +121,8 @@ public class PrizeFundToys {
       
             while (scanner.hasNextLine()) {
                String[] fields = scanner.nextLine().split(",");
-               Toy toy = new Toy(fields[0], fields[1], Integer.parseInt((fields[2])), Integer.parseInt((fields[3])));
+               // Integer.parseInt(fields[2]), Integer.parseInt(fields[3])
+               Toy toy = new Toy(fields[0], fields[1], fields[2], fields[3]);
                toys.add(toy);
         }
         return toys;

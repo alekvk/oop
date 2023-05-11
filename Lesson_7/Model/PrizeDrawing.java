@@ -3,8 +3,8 @@ package Lesson_7.Model;
 public class PrizeDrawing {
 
     public PrizeDrawing() {
-        Buyers buyers = new Buyers();
-        PrizeFundToys toys = new PrizeFundToys();
+        Buyers b = new Buyers();
+        PrizeFundToys t = new PrizeFundToys();
     }
 
 
