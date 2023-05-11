@@ -21,6 +21,10 @@ public class Buyers {
         }
     }
 
+    public List<Buyer> GetList(){
+        return buyers;
+    }
+
     
     public void addBuyer(Buyer buyer) {
         buyers.add(buyer);
@@ -83,14 +87,13 @@ public class Buyers {
         buyers.addAll(buyers2);
         StringBuilder sb = BuildString(buyers);
         WriterFile.writeFile(sb, "buyers.txt"); 
-        System.out.println("В телефонный справочник добавлены контакты из файла " + fileName);
+        System.out.println("В сведения о покупателях добавлены добавлены сведения из файла " + fileName);
     }
 
-    // ???????????????
     public void exportToFile(String fileName) {
         StringBuilder sb = BuildString(buyers);
         WriterFile.writeFile(sb, "buyers.txt"); 
-        System.out.println("Контакты телефонного справочника экспортированы в файл " + fileName);
+        System.out.println("Сведения о покупателях экспортированы в файл " + fileName);
     }
 
     public void displayBuers() {
@@ -107,7 +110,7 @@ public class Buyers {
     public StringBuilder BuildString(List<Buyer> buyers) {
         
         StringBuilder sb = new StringBuilder();
-        sb.append("id, Номер чека, Дата покупки, Сумма покупки\n");
+        //3sb.append("id, Nomer cheka, Data pokupki, Summa pokupki\n");
         for (Buyer b : buyers) {
             sb.append(b.getIdBuyer()).append(",");
             sb.append(b.getChequeNumber()).append(",");

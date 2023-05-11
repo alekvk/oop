@@ -12,14 +12,22 @@ import Lesson_7.Model.Base.Toy;
 public class PrizeFundToys {
     private List<Toy> toys;
        
-
     
     public PrizeFundToys() {
         Scanner scan = ReaderFile.readFile("prize_fund_toys.txt");
-        toys = SplitString(scan);
+        if (scan == null) {
+            toys = new ArrayList<>();
+        } else {
+            toys  = SplitString(scan);
+        }
+    }
+
+    public List<Toy> GetList(){
+        return toys;
     }
 
     
+ 
     public void addToy(Toy toy) {
         toys.add(toy);
         System.out.println("Игрушка успешно добавлена");
@@ -92,9 +100,9 @@ public class PrizeFundToys {
     }
 
     public void displayToys() {
-        Scanner scan = ReaderFile.readFile("prize_fund_toys.txt");
-        toys = SplitString(scan);
-        System.out.println("Список покупателей");
+        //Scanner scan = ReaderFile.readFile("prize_fund_toys.txt");
+        //toys = SplitString(scan);
+        System.out.println("Список игрушек");
         for (Toy t : toys) {
             System.out.println(t);
         }
@@ -102,10 +110,10 @@ public class PrizeFundToys {
 
 
    
-    public StringBuilder BuildString(List<Toy> buyers) {
+    public StringBuilder BuildString(List<Toy> toys) {
         
         StringBuilder sb = new StringBuilder();
-        sb.append("ttttttttttttttid, Номер чека, Дата покупки, Сумма покупки\n");
+        //sb.append("ID, Nazvanie igryshki, Kol-vo, Chastota vipadeniya igrushki (ves v % ot 0 do 100) \n");
         for (Toy t : toys) {
             sb.append(t.getIdToy()).append(",");
             sb.append(t.getTitle()).append(",");

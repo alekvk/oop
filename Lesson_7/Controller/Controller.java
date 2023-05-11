@@ -2,6 +2,7 @@ package Lesson_7.Controller;
 
 import java.util.Scanner;
 import Lesson_7.View;
+import Lesson_7.Model.PrizeDrawing;
 
 public class Controller {
     
@@ -18,7 +19,9 @@ public class Controller {
 
             switch (choice) {
                 case 1:
-                    PrizeDrawning();
+                    PrizeDrawing p = new PrizeDrawing();
+                    System.out.println("Произвожу розыгрыш игрушки");
+                    p.StartPrizeDrawing();
                     break;
                 case 2:
                     ContrBayers b = new ContrBayers();
@@ -37,9 +40,5 @@ public class Controller {
         }
     }
 
-    void PrizeDrawning() {
-        System.out.println("Произвожу розыгрыш игрушки");
-
-    }
-    
+ 
 }

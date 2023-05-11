@@ -55,11 +55,11 @@ public class Toy {
     
         @Override
         public String toString() {
-            return idToy + "Игрушка{" +
+            return  "ID = " + idToy + '\'' +
                     "Название ='" + title + '\'' +
                     ", Количество='" + quantity  + '\''+
-                    ", Частота выпадения игрушки (вес в % от 0 до 100)='" + frequency + '\'' +
-                    '}';
+                    ", Частота выпадения игрушки (вес в % от 0 до 100)='" + frequency;  
+                    
         }
 }
 
