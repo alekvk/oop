@@ -64,6 +64,14 @@ public class PrizeFundToys {
         System.out.println("Игрушка не найдена");
     }
 
+    public Toy searchByID(String id) {
+        for (Toy t : toys) {
+            if (t.getIdToy().equals(id)) {
+                return t;
+            }
+        }
+        return null;
+    }
     
 
     public void searchByTitle(String title) {
@@ -92,7 +100,7 @@ public class PrizeFundToys {
         System.out.println("В телефонный справочник добавлены контакты из файла " + fileName);
     }
 
-    // ???????????????
+   
     public void exportToFile(String fileName) {
         StringBuilder sb = BuildString(toys);
         WriterFile.writeFile(sb, "buyers.txt"); 

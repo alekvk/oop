@@ -20,7 +20,6 @@ public class Controller {
             switch (choice) {
                 case 1:
                     PrizeDrawing p = new PrizeDrawing();
-                    System.out.println("Произвожу розыгрыш игрушки");
                     p.StartPrizeDrawing();
                     break;
                 case 2:
