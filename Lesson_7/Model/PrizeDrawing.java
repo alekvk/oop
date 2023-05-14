@@ -17,46 +17,73 @@ public class PrizeDrawing {
 
     public PrizeDrawing() {
         b = new Buyers();
-        buyers = b.GetList();
         t = new PrizeFundToys();
-        toys = t.GetList();
     }
 
     public void StartPrizeDrawing() {
+        
+        buyers = b.GetList();
+        toys = t.GetList();
+        
         if (CheckList(toys, buyers) == false){
             System.out.println("Розыгрыш игрушек не может состояться");
             System.out.println("в случае если список видов игрушек или список чеков");
-            System.out.println("менее 3");
+            System.out.println("менее 5");
+            System.out.println("");
             return;
         }
 
-        System.out.println("Произвожу розыгрыш игрушки");
         
-        System.out.println("Индекс максимального");
-        System.out.println(GetIdMaxToy(toys));
+        System.out.println("Старт розыгрыша игрушек");
+        for (int i = 1; i <= 3; i++ ) {
+                        
+            // Определяем идентификатор вида i-й игрушки для приза
+            String IdWInToy = GetIdMaxToy(toys);
+            int indexWinToy = GetIndexInList(toys, IdWInToy);
+            Toy WinToy = toys.get(indexWinToy);  
 
-        
-
-        
+            // Определяем  покупателя (кассовый чек), который выиграет i-ю игрушку 
+            int indexWin = rnd(buyers.size() - 1); 
+            Buyer winBuyer = buyers.get(indexWin); 
+            
+            System.out.print("Этап  ");
+            System.out.println(i);
+            System.out.print("Выиграл покупатель (чек): ");
+            System.out.println(winBuyer);
+            System.out.print("Приз: ");
+            System.out.println(WinToy);
+            System.out.println(WinToy.getTitle());
+            System.out.println("");
+            
+            // Удаляем выигрышный чек из файла buyers.txt
+            b.removeBuyer(winBuyer.getIdBuyer());
+            
+            // Удаляем выигранную игрушку из файла toys.txt
+            RemoveWinToyFromFile(IdWInToy);
+        }
     }
 
-    // Метод проверки списка чеков (покуателей) на предмет возможности проведения розыгрыша
+    // Метод проверки списка чеков (покупателей) на предмет возможности проведения розыгрыша
     private boolean CheckList(List<Toy> toys, List<Buyer> buyers) {
-        if ( (toys.size() < 3) || (buyers.size() < 3) ) {
+        if ( (toys.size() < 5) || (buyers.size() < 5) ) {
                 return false;
         } else {
                 return true;    
         }
     }
 
+    // Метод нахождения случайного целого числа в интервале от 0 до max включительно
+    private int rnd(int max) {
+	    return (int)(Math.random() * ++max);
+
+    }
 
 
-    // Метод нахождения индекса игрушки с максимальным произведением количества игрушки 
+    // Метод нахождения ID игрушки с максимальным произведением количества игрушки 
     // данного вида на ее частоту (вес)
     private String GetIdMaxToy(List<Toy> toys) {
         int maxToy = -1;
         String idMaxToy = "";
-        //toys = t.GetList();
         for (Toy i : toys) {
             int n = Integer.parseInt(i.getQuantity()) * Integer.parseInt(i.getFrequency());
             if (maxToy < n) {
@@ -67,15 +94,29 @@ public class PrizeDrawing {
         return idMaxToy; 
     }
 
-    // Метод удаления выигранной игрушки из списка игрушек (призового фонда) 
+
+    // Метод получения индекса в List выигранной игрушки по ее идентификатору
+    private int GetIndexInList(List<Toy> toys, String id) {
+        int indexWinToy = -1;
+        int i = 0;
+        for (Toy t : toys) {
+            if (t.getIdToy().equals(id)) {
+                indexWinToy = i;
+            }
+            i+=1;
+        }
+        return indexWinToy;
+        
+    }
+
+    // Метод удаления выигранной игрушки из списка игрушек (призового фонда) в файле toys.txt 
     // Если кол-во игрушек данного вида более 1, то это кол-во уменьшается на 1.
     // Если кол-во игрушек данного вида равно 1, то данный вид игрушки полностью удаляется из призового фонда
-    private void RemoveWinToy(String id) {
+    private void RemoveWinToyFromFile(String id) {
         Toy WinToy = t.searchByID(id);
         int quantity = Integer.parseInt(WinToy.getQuantity());
         if (quantity > 1) {
-            quantity = quantity - 1;
-            String quantity_ = Integer.toString(quantity);
+            String quantity_ = Integer.toString(quantity - 1);
             String title = WinToy.getTitle();
             String  frequency = WinToy.getFrequency();
             t.updateToy(id, title, quantity_, frequency);
@@ -86,16 +127,24 @@ public class PrizeDrawing {
     }
 
 
-
    // Map<Integer, String> states = new Map<Integer, String>();
 
 
+   // Метод удаления выигранной игрушки из списка игрушек (призового фонда)  
+   // Если кол-во игрушек данного вида более 1, то это кол-во уменьшается на 1.
+   // Если кол-во игрушек данного вида равно 1, то данный вид игрушки полностью удаляется из призового фонда
+    private void RemoveWinToyFromList(String id) {
+        int indexList = GetIndexInList(toys, id);
+        Toy winToy = toys.get(indexList);
+        int quantity = Integer.parseInt(winToy.getQuantity());
+        if (quantity > 1) {
+            winToy.setQuantity(Integer.toString(quantity - 1)) ;
+            toys.remove(indexList);
+            toys.set(indexList, winToy);
+        } else {
+            toys.remove(indexList);
+        } 
+    }
 
-    /* public static int getRandom(int[] array) {
-        int rnd = new Random().nextInt(array.length);
-        return array[rnd]; */
-    
 
-
-    
 }

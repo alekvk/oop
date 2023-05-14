@@ -1,0 +1,6 @@
+1,Kukla Masha,3,80
+2,Lego988,5,5
+3,Avtoralli,2,1
+4,Avtokran,1,12
+5,Funbol,2,30
+6,Plan Ty-204,1,45
