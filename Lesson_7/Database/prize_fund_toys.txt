@@ -1,6 +1,9 @@
-1,Kukla Masha,3,80
-2,Lego988,5,5
-3,Avtoralli,2,1
-4,Avtokran,1,12
+1,Kukla Masha,2,55
+2,Lego988,3,15
+3,Avtoralli,2,23
+4,Avtokran,1,13
 5,Funbol,2,30
 6,Plan Ty-204,1,45
+7,Astronom,1,30
+8,Ralli2023,2,10
+9,Planner12,4,5

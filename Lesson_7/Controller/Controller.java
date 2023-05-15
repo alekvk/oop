@@ -19,14 +19,17 @@ public class Controller {
 
             switch (choice) {
                 case 1:
+                    // Старт розыгрыша игрушек
                     PrizeDrawing p = new PrizeDrawing();
                     p.StartPrizeDrawing();
                     break;
                 case 2:
+                    // Работа со списком покупателей (списком чеков)
                     ContrBayers b = new ContrBayers();
                     b.Bayers();
                     break;
                 case 3:
+                    // Работа со списком игрушек (призовым фондом)
                     ContrPrizeFundToys t = new ContrPrizeFundToys();
                     t.PrizeFundToys(); 
                     break;

@@ -1,13 +1,13 @@
 package Lesson_7.Model;
 
-//import java.util.HashMap;
-//import java.util.ArrayList;
 import java.util.List;
-//import java.util.Map;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Date;
+
 
 import Lesson_7.Model.Base.Buyer;
 import Lesson_7.Model.Base.Toy;
-
 
 public class PrizeDrawing {
     private List<Buyer> buyers;
@@ -33,7 +33,6 @@ public class PrizeDrawing {
             return;
         }
 
-        
         System.out.println("Старт розыгрыша игрушек");
         for (int i = 1; i <= 3; i++ ) {
                         
@@ -51,10 +50,14 @@ public class PrizeDrawing {
             System.out.print("Выиграл покупатель (чек): ");
             System.out.println(winBuyer);
             System.out.print("Приз: ");
-            System.out.println(WinToy);
             System.out.println(WinToy.getTitle());
             System.out.println("");
-            
+
+            // Сохраняем победителя  розыгрыша и приз в файле log_prizes.txt
+            StringBuilder s = BuildString(i, winBuyer, WinToy);
+            writeFile(s, "log_prizes.txt"); 
+           
+
             // Удаляем выигрышный чек из файла buyers.txt
             b.removeBuyer(winBuyer.getIdBuyer());
             
@@ -126,10 +129,47 @@ public class PrizeDrawing {
 
     }
 
+    public StringBuilder BuildString(int i, Buyer buyer, Toy toy) {
+        
+        StringBuilder sb = new StringBuilder();
+        if (i == 1) {
+
+            Date date = new Date();
+            sb.append("\n");
+            sb.append("Drawing of toys   ");
+            sb.append(date.toString()).append("\n");      
+        }
+        sb.append("stage ");
+        sb.append(i).append("  winner check: "); 
+        sb.append(buyer.getIdBuyer()).append(",");
+        sb.append(buyer.getChequeNumber()).append(",");
+        sb.append(buyer.getDatePurchase()).append(",");
+        sb.append(buyer.getPurchaseAmount()).append("  ");
+        sb.append("prize: ");  
+        sb.append(toy.getTitle()).append("\n");
+        return sb;
+
+    } 
+
+    static void writeFile(StringBuilder sb, String fileName) {
+        try(FileWriter writer = new FileWriter(fileName, true)) {
+            
+            writer.write(sb.toString());
+            
+        } 
+        catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+
+
+
+
 
    // Map<Integer, String> states = new Map<Integer, String>();
 
-
+   /*
    // Метод удаления выигранной игрушки из списка игрушек (призового фонда)  
    // Если кол-во игрушек данного вида более 1, то это кол-во уменьшается на 1.
    // Если кол-во игрушек данного вида равно 1, то данный вид игрушки полностью удаляется из призового фонда
@@ -145,6 +185,7 @@ public class PrizeDrawing {
             toys.remove(indexList);
         } 
     }
+    */
 
 
 }

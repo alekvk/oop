@@ -80,9 +80,8 @@ public class Buyers {
         }
     }
 
-    
     public void importFromFile(String fileName) {
-        Scanner scan = ReaderFile.readFile("buyers.txt");
+        Scanner scan = ReaderFile.readFile(fileName);
         List<Buyer> buyers2 = SplitString(scan);
         buyers.addAll(buyers2);
         StringBuilder sb = BuildString(buyers);
@@ -105,12 +104,10 @@ public class Buyers {
         }
     }
 
-
    
     public StringBuilder BuildString(List<Buyer> buyers) {
         
         StringBuilder sb = new StringBuilder();
-        //3sb.append("id, Nomer cheka, Data pokupki, Summa pokupki\n");
         for (Buyer b : buyers) {
             sb.append(b.getIdBuyer()).append(",");
             sb.append(b.getChequeNumber()).append(",");
